@@ -1,0 +1,42 @@
+<body>
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/municipi']"><mat-icon>lista</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="municipioForm" (ngSubmit)="onFormSubmit(municipioForm.value)" >     <!--onclick=""-->
+      <mat-form-field class="example-full-width">
+        <label for="codice">Codice</label>
+        <input matInput  formControlName="codice"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!municipioForm.get('codice').valid && municipioForm.get('codice').touched">Perfavore inserisci un codice</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label for="descrizione">Descrizione</label>
+        <input matInput  formControlName="descrizione"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!municipioForm.get('descrizione').valid && municipioForm.get('descrizione').touched">Perfavore inserisci il nome del municipio</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label for="ubicazione">Ubicazione</label>
+        <input matInput  formControlName="ubicazione"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!municipioForm.get('ubicazione').valid && municipioForm.get('ubicazione').touched">Perfavore inserisci un indirizzo</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!municipioForm.valid" mat-flat-button color="warn">Inserisci</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+</body>

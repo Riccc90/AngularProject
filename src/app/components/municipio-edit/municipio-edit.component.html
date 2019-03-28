@@ -1,0 +1,42 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="getMunicipioSingolo(municipio.id)"><mat-icon>info</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form  [formGroup]="municipioForm" (ngSubmit)="onFormSubmit(municipioForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Codice" formControlName="codice"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!municipioForm.get('codice').valid && municipioForm.get('codice').touched">Perfavore completa il campo</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Descrizione" formControlName="descrizione"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!municipioForm.get('descrizione').valid && municipioForm.get('descrizione').touched">Perfavore completa il campo</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Ubicazione" formControlName="ubicazione"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!municipioForm.get('ubicazione').valid && municipioForm.get('ubicazione').touched">Perfavore completa il campo</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!municipioForm.valid" mat-flat-button color="primary"><mat-icon>update</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+
+<pre>{{municipioForm.value | json}}</pre>
+
+
+<!--<mat-icon>save</mat-icon>-->
